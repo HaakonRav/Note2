@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <item android:id="@+id/btnNew"
+        android:title="@string/newNote"
+        android:showAsAction="always|withText"
+        android:icon="@drawable/new_note" />
+    <item android:id="@+id/btnLoad"
+        android:title="@string/openNote"
+        android:showAsAction="always|withText"
+        android:icon="@drawable/open_note" />
+    <item android:id="@+id/btnExport"
+        android:title="@string/export"
+        android:showAsAction="collapseActionView" />
+    <item android:id="@+id/btnSettings"
+        android:title="@string/settings"
+        android:showAsAction="collapseActionView"
+        android:visible="false" />
+    <item android:id="@+id/btnAbout"
+        android:title="@string/about"
+        android:showAsAction="collapseActionView" />
+
+</menu>

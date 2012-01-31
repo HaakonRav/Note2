@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Note</string>
+    <string name="noteTitle"></string>
+    <string name="exportSuccess">Successfully exported note</string>
+    <string name="exportError">Unable to export note</string>
+    <string name="cancel">Cancel</string>
+
+    <!-- Action Bar -->
+    <string name="newNote">New</string>
+    <string name="openNote">Open</string>
+    <string name="export">Export</string>
+    <string name="about">About</string>
+    <string name="delete">Delete</string>
+    
+    <!-- Rename dialog -->
+    <string name="renameTitle">Rename</string>
+    <string name="renameMessage">Enter a new name to rename and save your file.</string>
+    <string name="renameSave">Save</string>
+    
+    <!-- About dialog -->
+    <string name="aboutMessage">
+        Note is the simplest note application out there.\n\nMade by Kristoffer Pedersen\ndeifyed@gmail.com\n\nIcons by Haakon Wilhelm Ravik\nhravikster@gmail.com
+    </string>
+    
+    <!-- Settings -->
+    <string name="settings">Settings</string>
+    <string name="lblSettingsSync">Synchronize</string>
+    
+    <!-- Open notes Activity -->
+    <string name="no_notes">Start making notes!</string>
+    <string name="delete_notes">Delete</string>
+</resources>
