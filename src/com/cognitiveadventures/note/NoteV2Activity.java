@@ -21,8 +21,6 @@ package com.cognitiveadventures.note;
 import java.io.File;
 import java.io.FileWriter;
 
-import com.cognitiveadventures.com.R;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;

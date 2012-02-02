@@ -1,7 +1,5 @@
 package com.cognitiveadventures.note;
 
-import com.cognitiveadventures.com.R;
-
 import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
@@ -15,14 +13,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 public class OpenNoteActivity extends ListActivity {
 		private final int DELETE_ID = 1;
 		
-		//private ArrayList<Long> selectedItems = new ArrayList<Long>();
-	
 		SQLAdapter sql;
 		Cursor mNotesCursor;
 		
@@ -59,7 +54,7 @@ public class OpenNoteActivity extends ListActivity {
 					setResult(Activity.RESULT_CANCELED, new Intent());
 					finish();
 				case R.id.btnDelete:
-					Toast.makeText(this, "Count: " + getListView().getCheckedItemCount(), Toast.LENGTH_SHORT).show();
+					batchDelete();
 				default:
 					return super.onOptionsItemSelected(item);
 			}
@@ -122,13 +117,19 @@ public class OpenNoteActivity extends ListActivity {
 			
 			startManagingCursor(mNotesCursor);
 			
-			String[] from = new String[] { SQLAdapter.KEY_TITLE };
-			int[] to = new int[] { R.id.noteTitle };
+			//String[] from = new String[] { SQLAdapter.KEY_TITLE };
+			//int[] to = new int[] { R.id.noteTitle };
 			
-			SimpleCursorAdapter notes = new SimpleCursorAdapter(this, R.layout.loadnotes_item, mNotesCursor, from, to);
-			//SimpleCursorAdapter notes = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_multiple_choice, mNotesCursor, from, to);
+			//SimpleCursorAdapter notes = new SimpleCursorAdapter(this, R.layout.loadnotes_item, mNotesCursor, from, to);
+			
+			NoteAdapter notes = new NoteAdapter(this, mNotesCursor);
 			
 			setListAdapter(notes);
 			sql.close();
+		}
+		
+		private void batchDelete() {
+			
+			Toast.makeText(this, "" + getListView().getCheckedItemPositions().valueAt(2), Toast.LENGTH_SHORT).show();
 		}
 }
