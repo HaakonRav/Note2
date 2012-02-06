@@ -86,8 +86,8 @@ public class NoteV2Activity extends Activity {
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
 				
-					if(nId == -1)
-						getActionBar().setIcon(R.drawable.homeiconunsaved);
+				if(nId == -1)
+					getActionBar().setIcon(R.drawable.homeiconunsaved);
 				
 			}
         	
@@ -316,5 +316,10 @@ public class NoteV2Activity extends Activity {
     	editor.putString(PREFS_TITLESTRING, getActionBar().getTitle().toString());
     	editor.putString(PREFS_BODYSTRING, body.getText().toString());
     	editor.commit();
+    }
+    
+    public long getNId() {
+    	
+    	return(new Long(nId));
     }
 }
