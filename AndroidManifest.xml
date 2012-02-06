@@ -19,7 +19,7 @@
         <activity
             android:name="com.cognitiveadventures.note.NoteV2Activity"
             android:label="@string/app_name"
-            android:icon="@drawable/homeicon">
+            android:icon="@drawable/launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,11 +28,11 @@
         </activity>
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/settings"
-            android:icon="@drawable/homeicon" />
+            android:label="@string/settings"/>
         <activity 
             android:name="com.cognitiveadventures.note.OpenNoteActivity"
-            android:label="@string/openNote" />
+            android:label="@string/openNote"
+            android:icon="@drawable/homeicon" />
     </application>
 
 </manifest>

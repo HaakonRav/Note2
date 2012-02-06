@@ -1,3 +1,12 @@
+/*
+ * Author: Kristoffer Pedersen
+ * Mail: deifyed <Guess (hint: its an @)> gmail.com
+ * 
+ * License:
+ * I take no responsibility what so ever of what you decide to do with this code.
+ * You are free to use and/or modify it as you wish. 
+ */
+
 package com.cognitiveadventures.note;
 
 import java.util.ArrayList;

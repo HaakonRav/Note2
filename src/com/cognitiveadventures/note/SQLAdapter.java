@@ -1,6 +1,7 @@
 /*
  * Practically a copy/paste of Googles NotePad tutorial' NotesDbAdapter.java
  * http://developer.android.com/resources/tutorials/notepad/index.html
+ * If you are to use it, know its Google's.
  */
 
 package com.cognitiveadventures.note;

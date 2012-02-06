@@ -11,11 +11,13 @@ public final class R {
     public static final class attr {
     }
     public static final class drawable {
-        public static final int ic_action_delete=0x7f020000;
-        public static final int ic_menu_archive=0x7f020001;
-        public static final int launcher=0x7f020002;
-        public static final int new_note=0x7f020003;
-        public static final int open_note=0x7f020004;
+        public static final int homeicon=0x7f020000;
+        public static final int homeiconunsaved=0x7f020001;
+        public static final int ic_action_delete=0x7f020002;
+        public static final int ic_menu_archive=0x7f020003;
+        public static final int launcher=0x7f020004;
+        public static final int new_note=0x7f020005;
+        public static final int open_note=0x7f020006;
     }
     public static final class id {
         public static final int btnAbout=0x7f060008;
