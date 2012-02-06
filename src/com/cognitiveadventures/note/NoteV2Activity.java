@@ -2,6 +2,11 @@
  * Author: Kristoffer Pedersen
  * Mail: deifyed <Guess (hint: its an @)> gmail.com
  * 
+ * License:
+ * I take no responsibility what so ever of what you decide to do with this code.
+ * You are free to use and/or modify it as you wish. 
+ */
+ /* 
  * TODO:
  *  * Title label onClick to rename
  *  * Settings
@@ -28,6 +33,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -59,12 +66,39 @@ public class NoteV2Activity extends Activity {
         
         setContentView(R.layout.main);
         getActionBar().setHomeButtonEnabled(true);
+        getActionBar().setIcon(R.drawable.homeicon);
         
         body = (EditText) findViewById(R.id.txtBody);
+        
+        body.addTextChangedListener(new TextWatcher() {
+
+			public void afterTextChanged(Editable s) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				
+					if(nId == -1)
+						getActionBar().setIcon(R.drawable.homeiconunsaved);
+				
+			}
+        	
+        });
         
         sql = new SQLAdapter(this);
     }
     
+    /**
+     * Called when an activity regains focus.
+     */
     @Override
     protected void onResume() {
     	
@@ -73,6 +107,9 @@ public class NoteV2Activity extends Activity {
     	super.onResume();
     }
     
+    /**
+     * Called when an activity lose focus.
+     */
     @Override
     protected void onPause() {
     	
@@ -116,6 +153,9 @@ public class NoteV2Activity extends Activity {
     	}
     }
     
+    /**
+     * Listener which fires when an activity started by startActivityForResult() finishes.
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     	super.onActivityResult(requestCode, resultCode, data);
@@ -145,6 +185,9 @@ public class NoteV2Activity extends Activity {
 		reset();
     }
     
+    /**
+     * Gives the user a dialog to rename and save their note.
+     */
     private void renameNote() {
     	AlertDialog.Builder builder = new AlertDialog.Builder(this);
     	builder.setTitle(R.string.renameTitle);
@@ -159,6 +202,7 @@ public class NoteV2Activity extends Activity {
 
 			public void onClick(DialogInterface dialog, int which) {
 				saveNote(txtTitleInput.getText().toString());
+				getActionBar().setIcon(R.drawable.homeicon);
 			}
     		
     	});
@@ -173,6 +217,9 @@ public class NoteV2Activity extends Activity {
     	builder.show();
     }
     
+    /**
+     * Calles the About dialog.
+     */
     private void about() {
     	
     	AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -204,14 +251,25 @@ public class NoteV2Activity extends Activity {
 		savePrefs();
     }
     
+    /**
+     * Loads note from SharedPreferences.
+     */
     private void loadNote() {
     	loadPrefs();
     }
     
+    /**
+     * Used to export notes to SD-card.
+     */
     private void export() {
     	export(getActionBar().getTitle().toString(), body.getText().toString());
     }
     
+    /**
+     * Main export magic
+     * @param The title of the file.
+     * @param The content of the file.
+     */
     private void export(String title, String body) {
     	try {
     		File exportFile = new File(Environment.getExternalStorageDirectory(), title);
@@ -231,11 +289,16 @@ public class NoteV2Activity extends Activity {
     /*
      * SUPPORT FUNCTIONS/METHODS
      */
+    
+    /**
+     * Resets UI and nId.
+     */
     private void reset() {
     	
 		getActionBar().setTitle(getString(R.string.app_name));
 		body.setText("");
 		nId = -1;
+        getActionBar().setIcon(R.drawable.homeicon);
     }
     
     private void loadPrefs() {

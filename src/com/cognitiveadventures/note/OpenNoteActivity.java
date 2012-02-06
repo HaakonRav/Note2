@@ -1,3 +1,12 @@
+/*
+ * Author: Kristoffer Pedersen
+ * Mail: deifyed <Guess (hint: its an @)> gmail.com
+ * 
+ * License:
+ * I take no responsibility what so ever of what you decide to do with this code.
+ * You are free to use and/or modify it as you wish. 
+ */
+
 package com.cognitiveadventures.note;
 
 import android.app.Activity;
@@ -13,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
+
 public class OpenNoteActivity extends ListActivity implements DialogInterface.OnClickListener {
 	
 	private SQLAdapter sql;
@@ -20,6 +30,7 @@ public class OpenNoteActivity extends ListActivity implements DialogInterface.On
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
+    	
         super.onCreate(savedInstanceState);
         
         setContentView(R.layout.loadnotelist);
@@ -97,8 +108,6 @@ public class OpenNoteActivity extends ListActivity implements DialogInterface.On
     	
     	Cursor c = sql.fetchAllNotes();
     	
-    	startManagingCursor(c);
-    	
     	NoteListAdapter adapter = new NoteListAdapter(this, R.layout.loadnotes_item, c, SQLAdapter.KEY_TITLE, R.id.noteTitle);
     	
     	setListAdapter(adapter);
@@ -117,7 +126,6 @@ public class OpenNoteActivity extends ListActivity implements DialogInterface.On
     	
     	builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
     		
-			
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.cancel();
 			}
