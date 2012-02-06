@@ -8,6 +8,9 @@
     
     <!-- Permissions -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- Exporting note -->
+    
+    <!-- Features -->
+    <uses-feature android:name="android" />
 
     <application
         android:icon="@drawable/launcher"

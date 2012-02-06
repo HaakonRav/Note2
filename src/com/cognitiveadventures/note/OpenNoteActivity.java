@@ -59,7 +59,7 @@ public class OpenNoteActivity extends ListActivity implements DialogInterface.On
     			this.finish();
     			return(true);
     		case R.id.btnDelete:
-    			batchDeleteAlert(((NoteListAdapter) getListAdapter()).getSelectedCount());
+    			batchDeleteAlert();
     			return(true);
     		default:
     	    	return super.onOptionsItemSelected(item);
@@ -106,12 +106,12 @@ public class OpenNoteActivity extends ListActivity implements DialogInterface.On
     	sql.close();
     }
 
-    void batchDeleteAlert(int n) {
+    void batchDeleteAlert() {
     	
     	AlertDialog.Builder builder = new AlertDialog.Builder(this, android.R.style.Theme_Holo_Dialog);
     	
     	builder.setTitle(R.string.delete_notes_dialog_title);
-    	builder.setMessage(String.format(getResources().getString(R.string.delete_notes_dialog_message), n));
+    	builder.setMessage(String.format(getResources().getString(R.string.delete_notes_dialog_message), ((NoteListAdapter) getListAdapter()).getSelectedCount()));
     	
     	builder.setPositiveButton(R.string.delete_notes, this);
     	
