@@ -31,6 +31,8 @@ public class OpenNoteActivity extends ListActivity implements DialogInterface.On
         
         getActionBar().setHomeButtonEnabled(true);
         
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        
     	deleteIds = new ArrayList<Long>();
         
         fillList();

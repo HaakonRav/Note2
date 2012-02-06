@@ -175,6 +175,7 @@ public class NoteV2Activity extends Activity {
     }
     
     private void about() {
+    	
     	AlertDialog.Builder builder = new AlertDialog.Builder(this);
     	builder.setIcon(R.drawable.launcher);
     	builder.setTitle(getString(R.string.about) + " " + getString(R.string.app_name));
@@ -232,18 +233,22 @@ public class NoteV2Activity extends Activity {
      * SUPPORT FUNCTIONS/METHODS
      */
     private void reset() {
+    	
 		getActionBar().setTitle(getString(R.string.app_name));
 		body.setText("");
 		nId = -1;
     }
     
     private void loadPrefs() {
+    	
     	getActionBar().setTitle(getSharedPreferences(PREFS_NAME, 0).getString(PREFS_TITLESTRING, getString(R.string.app_name)));
     	body.setText(getSharedPreferences(PREFS_NAME, 0).getString(PREFS_BODYSTRING, ""));
     	nId = getSharedPreferences(PREFS_NAME, 0).getLong(PREFS_NIDLONG, -1);
     	body.setSelection(body.length());
     }
+    
     private void savePrefs() {
+    	
     	SharedPreferences.Editor editor = getSharedPreferences(PREFS_NAME, 0).edit();
     	editor.putLong(PREFS_NIDLONG, nId);
     	editor.putString(PREFS_TITLESTRING, getActionBar().getTitle().toString());

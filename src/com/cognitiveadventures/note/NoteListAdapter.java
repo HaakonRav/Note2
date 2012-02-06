@@ -58,18 +58,19 @@ public class NoteListAdapter extends SimpleCursorAdapter {
 				vHolder.noteTitleHolder = (TextView) convertView.findViewById(R.id.noteTitle);
 				vHolder.noteCheckBoxHolder = (CheckBox) convertView.findViewById(R.id.noteCheckBox);
 				
-				vHolder.id = mCursor.getLong(mCursor.getColumnIndexOrThrow(SQLAdapter.KEY_ROWID));
+				vHolder.id = mCursor.getLong(mCursor.getColumnIndex(SQLAdapter.KEY_ROWID));
 				
 				vHolder.noteCheckBoxHolder.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 					
-					public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+					public void onCheckedChanged(CompoundButton v, boolean isChecked) {
 						
 						if(isChecked)
-							deletePos.add(mCursor.getLong(mCursor.getColumnIndexOrThrow(SQLAdapter.KEY_ROWID)));
+							deletePos.add(((ViewHolder)((View) v.getParent()).getTag()).id);
 						else
-							deletePos.remove(mCursor.getLong(mCursor.getColumnIndexOrThrow(SQLAdapter.KEY_ROWID)));
+							deletePos.remove(((ViewHolder)((View) v.getParent()).getTag()).id);
 					}
 				});
+				
 				
 				convertView.setTag(vHolder);
 			}
