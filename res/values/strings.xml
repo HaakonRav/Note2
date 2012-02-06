@@ -30,4 +30,8 @@
     <!-- Open notes Activity -->
     <string name="no_notes">Start making notes!</string>
     <string name="delete_notes">Delete</string>
+    
+    <string name="delete_notes_dialog_title">Delete</string>
+    <string name="delete_notes_dialog_message">Are you sure you want to delete the %s item(s)?</string>
+    
 </resources>

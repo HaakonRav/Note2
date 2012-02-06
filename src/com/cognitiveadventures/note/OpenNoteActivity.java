@@ -1,135 +1,125 @@
 package com.cognitiveadventures.note;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ListActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.view.ContextMenu;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ListView;
-import android.widget.Toast;
 
-public class OpenNoteActivity extends ListActivity {
-		private final int DELETE_ID = 1;
-		
-		SQLAdapter sql;
-		Cursor mNotesCursor;
-		
-		 @Override
-		protected void onCreate(Bundle savedInstanceState) {
-			super.onCreate(savedInstanceState);
+public class OpenNoteActivity extends ListActivity implements DialogInterface.OnClickListener {
+	
+	private SQLAdapter sql;
+	ArrayList<Long> deleteIds;
+	
+    /** Called when the activity is first created. */
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        
+        setContentView(R.layout.loadnotelist);
+        
+        sql = new SQLAdapter(this);
+        
+        getActionBar().setHomeButtonEnabled(true);
+        
+    	deleteIds = new ArrayList<Long>();
+        
+        fillList();
+    }
+    
+    @Override
+    public void onBackPressed() {
+    	
+    	setResult(Activity.RESULT_CANCELED, new Intent());
+    	
+    	this.finish();
+    }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+    	
+    	getMenuInflater().inflate(R.menu.open_action_bar, menu);
+    	
+    	return(true);
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+    	switch(item.getItemId()) {
+    	
+    		case android.R.id.home:
+    			setResult(Activity.RESULT_CANCELED, new Intent());
+    			this.finish();
+    			return(true);
+    		case R.id.btnDelete:
+    			batchDeleteAlert(((NoteListAdapter) getListAdapter()).getSelectedCount());
+    			return(true);
+    		default:
+    	    	return super.onOptionsItemSelected(item);
+    	}
+    }
+    
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+    	
+    	super.onListItemClick(l, v, position, id);
+    }
+    
+    void fillList() {
+    	
+    	sql.open();
+    	
+    	Cursor c = sql.fetchAllNotes();
+    	
+    	startManagingCursor(c);
+    	
+    	NoteListAdapter adapter = new NoteListAdapter(this, R.layout.loadnotes_item, c, SQLAdapter.KEY_TITLE, R.id.noteTitle);
+    	
+    	setListAdapter(adapter);
+    	
+    	sql.close();
+    }
+
+    void batchDeleteAlert(int n) {
+    	
+    	AlertDialog.Builder builder = new AlertDialog.Builder(this, android.R.style.Theme_Holo_Dialog);
+    	
+    	builder.setTitle(R.string.delete_notes_dialog_title);
+    	builder.setMessage(String.format(getResources().getString(R.string.delete_notes_dialog_message), n));
+    	
+    	builder.setPositiveButton(R.string.delete_notes, this);
+    	
+    	builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+    		
 			
-			setContentView(R.layout.loadnotelist);
-			
-			sql = new SQLAdapter(this);
-			
-			fillData();
-			
-			registerForContextMenu(getListView());
-			getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-			
-			getActionBar().setDisplayHomeAsUpEnabled(true);
-			
-		}
-		 
-	    /** Creates the action bar options menu **/
-	    @Override
-	    public boolean onCreateOptionsMenu(Menu menu) {
-	    	MenuInflater inflater = getMenuInflater();
-	    	inflater.inflate(R.menu.open_action_bar, menu);
-	    	return(true);
-	    }
-		 
-		@Override
-		public boolean onOptionsItemSelected(MenuItem item) {
-		
-			switch(item.getItemId()) {
-				case android.R.id.home:
-					setResult(Activity.RESULT_CANCELED, new Intent());
-					finish();
-				case R.id.btnDelete:
-					batchDelete();
-				default:
-					return super.onOptionsItemSelected(item);
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.cancel();
 			}
-		}
-		 
-		@Override
-		public void onCreateContextMenu(ContextMenu menu, View v,
-			ContextMenuInfo menuInfo) {
-			
-			super.onCreateContextMenu(menu, v, menuInfo);
-			
-			menu.add(0, DELETE_ID, 0, R.string.delete_notes);
-		}
+		});
+    	
+    	builder.show();
+    }
+
+	public void onClick(DialogInterface dialog, int which) {
 		
-		@Override
-		public boolean onContextItemSelected(MenuItem item) {
-			switch(item.getItemId()) {
-				case DELETE_ID:
-					AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
-					sql.open();
-					sql.deleteNote(info.id);
-					sql.close();
-					fillData();
-					return(true);
-			}
+		if(which == Dialog.BUTTON_POSITIVE) {
 			
-			
-			return super.onContextItemSelected(item);
+	    	sql.open();
+	    	for(long id : ((NoteListAdapter) getListAdapter()).getSelectedItems())
+	    		sql.deleteNote(id);
+	    	sql.close();
+    		
+    		fillList();
 		}
-		
-		@Override
-		protected void onListItemClick(ListView l, View v, int position, long id) {
-		
-			super.onListItemClick(l, v, position, id);
-			
-			Cursor c = mNotesCursor;
-			c.moveToPosition(position);
-			
-			Bundle i = new Bundle();
-			i.putLong(SQLAdapter.KEY_ROWID, id);
-			i.putString(SQLAdapter.KEY_TITLE, c.getString(c.getColumnIndexOrThrow(SQLAdapter.KEY_TITLE)));
-			i.putString(SQLAdapter.KEY_BODY, c.getString(c.getColumnIndexOrThrow(SQLAdapter.KEY_BODY)));
-			
-			setResult(Activity.RESULT_OK, new Intent().putExtras(i));
-			
-			finish();
-		}
-		
-		@Override
-		public void onBackPressed() {
-			
-			setResult(Activity.RESULT_CANCELED, new Intent());
-			
-			super.onBackPressed();
-		}
-		
-		private void fillData() {
-			sql.open();
-			mNotesCursor = sql.fetchAllNotes();
-			
-			startManagingCursor(mNotesCursor);
-			
-			//String[] from = new String[] { SQLAdapter.KEY_TITLE };
-			//int[] to = new int[] { R.id.noteTitle };
-			
-			//SimpleCursorAdapter notes = new SimpleCursorAdapter(this, R.layout.loadnotes_item, mNotesCursor, from, to);
-			
-			NoteAdapter notes = new NoteAdapter(this, mNotesCursor);
-			
-			setListAdapter(notes);
-			sql.close();
-		}
-		
-		private void batchDelete() {
-			
-			Toast.makeText(this, "" + getListView().getCheckedItemPositions().valueAt(2), Toast.LENGTH_SHORT).show();
-		}
+	}
 }

@@ -4,12 +4,13 @@
     android:layout_height="48dp"
     android:orientation="horizontal" >
     
-	<CheckBox android:id="@android:id/checkbox"
+	<CheckBox 
+	    android:id="@+id/noteCheckBox"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:padding="8dp"
 	    android:layout_gravity="center"
-	    android:focusable="false" />
+	    android:focusable="false"/>
 	<TextView android:id="@+id/noteTitle" 
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"

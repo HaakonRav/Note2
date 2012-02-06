@@ -11,7 +11,7 @@
 
     <application
         android:icon="@drawable/launcher"
-        android:label="@string/app_name" 
+        android:label="@string/app_name"
         android:theme="@android:style/Theme.Holo.Light">
         <activity
             android:name="com.cognitiveadventures.note.NoteV2Activity"
@@ -27,9 +27,6 @@
             android:label="@string/settings" />
         <activity 
             android:name="com.cognitiveadventures.note.OpenNoteActivity"
-            android:label="@string/openNote" />
-        <activity 
-            android:name=".OpenNoteActivity2"
             android:label="@string/openNote" />
     </application>
 
