@@ -77,18 +77,15 @@ public class NoteV2Activity extends Activity {
 				
 			}
 
-			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 				// TODO Auto-generated method stub
 				
 			}
 
-			public void onTextChanged(CharSequence s, int start, int before,
-					int count) {
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
 				
 				if(nId == -1)
 					getActionBar().setIcon(R.drawable.homeiconunsaved);
-				
 			}
         	
         });
@@ -196,6 +193,8 @@ public class NoteV2Activity extends Activity {
     	final EditText txtTitleInput = new EditText(builder.getContext());
 
     	txtTitleInput.setSingleLine();
+    	txtTitleInput.setText(body.getText().toString().substring(0, 15));
+    		
     	builder.setView(txtTitleInput);
     	
     	builder.setPositiveButton(R.string.renameSave, new Dialog.OnClickListener() {

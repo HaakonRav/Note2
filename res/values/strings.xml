@@ -5,6 +5,7 @@
     <string name="exportSuccess">Successfully exported note</string>
     <string name="exportError">Unable to export note</string>
     <string name="cancel">Cancel</string>
+    <string name="bodyHint">Press the Home Icon to save your note.</string>
 
     <!-- Action Bar -->
     <string name="newNote">New</string>

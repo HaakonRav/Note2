@@ -13,20 +13,12 @@ public final class R {
     public static final class drawable {
         public static final int homeicon=0x7f020000;
         public static final int homeiconunsaved=0x7f020001;
-        public static final int homeiconunsaved1=0x7f020002;
-        public static final int homeiconunsaved2=0x7f020003;
-        public static final int homeiconunsaved3=0x7f020004;
-        public static final int homeiconunsaved4=0x7f020005;
-        public static final int homeiconunsaved5=0x7f020006;
-        public static final int homeiconunsaved6=0x7f020007;
-        public static final int homeiconunsaved7=0x7f020008;
-        public static final int homeiconunsaved8=0x7f020009;
-        public static final int ic_action_delete=0x7f02000a;
-        public static final int ic_menu_archive=0x7f02000b;
-        public static final int launcher=0x7f02000c;
-        public static final int new_note=0x7f02000d;
-        public static final int newnote=0x7f02000e;
-        public static final int open_note=0x7f02000f;
+        public static final int ic_action_delete=0x7f020002;
+        public static final int ic_menu_archive=0x7f020003;
+        public static final int launcher=0x7f020004;
+        public static final int new_note=0x7f020005;
+        public static final int newnote=0x7f020006;
+        public static final int open_note=0x7f020007;
     }
     public static final class id {
         public static final int btnAbout=0x7f060008;
@@ -51,35 +43,36 @@ public final class R {
         public static final int open_action_bar=0x7f050001;
     }
     public static final class string {
-        public static final int about=0x7f040008;
+        public static final int about=0x7f040009;
         /**  About dialog 
          */
-        public static final int aboutMessage=0x7f04000d;
+        public static final int aboutMessage=0x7f04000e;
         public static final int app_name=0x7f040000;
+        public static final int bodyHint=0x7f040005;
         public static final int cancel=0x7f040004;
-        public static final int delete=0x7f040009;
-        public static final int delete_notes=0x7f040011;
-        public static final int delete_notes_dialog_message=0x7f040013;
-        public static final int delete_notes_dialog_title=0x7f040012;
-        public static final int export=0x7f040007;
+        public static final int delete=0x7f04000a;
+        public static final int delete_notes=0x7f040012;
+        public static final int delete_notes_dialog_message=0x7f040014;
+        public static final int delete_notes_dialog_title=0x7f040013;
+        public static final int export=0x7f040008;
         public static final int exportError=0x7f040003;
         public static final int exportSuccess=0x7f040002;
-        public static final int lblSettingsSync=0x7f04000f;
+        public static final int lblSettingsSync=0x7f040010;
         /**  Action Bar 
          */
-        public static final int newNote=0x7f040005;
+        public static final int newNote=0x7f040006;
         /**  Open notes Activity 
          */
-        public static final int no_notes=0x7f040010;
+        public static final int no_notes=0x7f040011;
         public static final int noteTitle=0x7f040001;
-        public static final int openNote=0x7f040006;
-        public static final int renameMessage=0x7f04000b;
-        public static final int renameSave=0x7f04000c;
+        public static final int openNote=0x7f040007;
+        public static final int renameMessage=0x7f04000c;
+        public static final int renameSave=0x7f04000d;
         /**  Rename dialog 
          */
-        public static final int renameTitle=0x7f04000a;
+        public static final int renameTitle=0x7f04000b;
         /**  Settings 
          */
-        public static final int settings=0x7f04000e;
+        public static final int settings=0x7f04000f;
     }
 }
