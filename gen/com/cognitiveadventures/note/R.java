@@ -13,11 +13,20 @@ public final class R {
     public static final class drawable {
         public static final int homeicon=0x7f020000;
         public static final int homeiconunsaved=0x7f020001;
-        public static final int ic_action_delete=0x7f020002;
-        public static final int ic_menu_archive=0x7f020003;
-        public static final int launcher=0x7f020004;
-        public static final int new_note=0x7f020005;
-        public static final int open_note=0x7f020006;
+        public static final int homeiconunsaved1=0x7f020002;
+        public static final int homeiconunsaved2=0x7f020003;
+        public static final int homeiconunsaved3=0x7f020004;
+        public static final int homeiconunsaved4=0x7f020005;
+        public static final int homeiconunsaved5=0x7f020006;
+        public static final int homeiconunsaved6=0x7f020007;
+        public static final int homeiconunsaved7=0x7f020008;
+        public static final int homeiconunsaved8=0x7f020009;
+        public static final int ic_action_delete=0x7f02000a;
+        public static final int ic_menu_archive=0x7f02000b;
+        public static final int launcher=0x7f02000c;
+        public static final int new_note=0x7f02000d;
+        public static final int newnote=0x7f02000e;
+        public static final int open_note=0x7f02000f;
     }
     public static final class id {
         public static final int btnAbout=0x7f060008;
