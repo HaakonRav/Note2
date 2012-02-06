@@ -71,13 +71,14 @@ public class NoteListAdapter extends SimpleCursorAdapter {
 					}
 				});
 				
+				vHolder.noteTitleHolder.setText(mCursor.getString(titleIndex));
 				
 				convertView.setTag(vHolder);
 			}
 			else
 				vHolder = (ViewHolder) convertView.getTag();
 			
-			vHolder.noteTitleHolder.setText(mCursor.getString(titleIndex));
+
 		}
 		
 		return(convertView);

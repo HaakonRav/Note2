@@ -1,7 +1,5 @@
 package com.cognitiveadventures.note;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -18,7 +16,6 @@ import android.widget.ListView;
 public class OpenNoteActivity extends ListActivity implements DialogInterface.OnClickListener {
 	
 	private SQLAdapter sql;
-	ArrayList<Long> deleteIds;
 	
     /** Called when the activity is first created. */
     @Override
@@ -32,8 +29,6 @@ public class OpenNoteActivity extends ListActivity implements DialogInterface.On
         getActionBar().setHomeButtonEnabled(true);
         
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        
-    	deleteIds = new ArrayList<Long>();
         
         fillList();
     }
@@ -73,6 +68,25 @@ public class OpenNoteActivity extends ListActivity implements DialogInterface.On
     
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
+    	
+    	sql.open();
+    	
+    	Cursor c = sql.fetchNote(id);
+    	
+    	sql.close();
+    	
+    	if(c.moveToFirst()) {
+    		
+        	Bundle extras = new Bundle();
+        	
+    		extras.putString(SQLAdapter.KEY_TITLE, c.getString(c.getColumnIndexOrThrow(SQLAdapter.KEY_TITLE)));
+    		extras.putString(SQLAdapter.KEY_BODY, c.getString(c.getColumnIndexOrThrow(SQLAdapter.KEY_BODY)));
+    		extras.putLong(SQLAdapter.KEY_ROWID, c.getLong(c.getColumnIndexOrThrow(SQLAdapter.KEY_ROWID)));
+    		
+    		this.setResult(Activity.RESULT_OK, new Intent().putExtras(extras));
+    		
+    		finish();
+    	}
     	
     	super.onListItemClick(l, v, position, id);
     }

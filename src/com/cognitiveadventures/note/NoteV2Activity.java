@@ -4,7 +4,6 @@
  * 
  * TODO:
  *  * Title label onClick to rename
- *  * Multiple checking boxes to delete
  *  * Settings
  *  	* Font settings
  *  	* Holo dark choice?
